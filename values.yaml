@@ -2427,7 +2427,7 @@ repoServer:
   # -- Additional containers to be added to the repo server pod
   ## Ref: https://argo-cd.readthedocs.io/en/stable/user-guide/config-management-plugins/
   ## Note: Supports use of custom Helm templates
-  extraContainers: []
+extraContainers:
       - name: argocd-lovely-plugin
         image: ghcr.io/crumbhole/lovely:1.0.1
         securityContext:
@@ -2440,6 +2440,10 @@ repoServer:
             name: plugins
           - mountPath: /tmp
             name: lovely-tmp
+  volumes:
+      - name: lovely-tmp
+        emptyDir: {}
+
    volumes:
        - name: lovely-tmp
          emptyDir: {}
